@@ -2,17 +2,29 @@
   margin: 10;
   color: #6748a1;
 }
+body {
+  background-color: #ffcccc;
+}
+.app{
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px;
+}
 .app_header{
   display: flex;
   align-items: center;
   margin-bottom: 20px;
   justify-content: space-between;
-
+}
+.app_left {
+  flex: 0.9;
 }
 .app_stats {
   display: flex;
   justify-content: space-between;
 }
-body {
-  background-color: #ffcccc;
+@media (max-width: 990px) {
+  .app {
+    flex-direction: column;
+  }
 }
