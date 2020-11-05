@@ -1,11 +1,14 @@
-import React from 'react';
+import React  from 'react';
 
-function Map(){
-    return(
-        <div className="map">
-            <h1>Map</h1>
-        </div>
-    )
+import './Map.css';
+
+
+function Map() {
+  return (
+    <div className="map">
+      <h3>hi</h3>
+    </div>
+  )
 }
 
 export default Map;

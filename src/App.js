@@ -1,23 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from "react";
+import "./App.css";
 import {
   MenuItem,
   FormControl,
   Select,
   Card,
   CardContent,
-} from '@material-ui/core';
-import InfoBox from './InfoBox';
-import Map from './Map';
-import './App.css';
-import Table from './Table';
-import {sortData} from "./util";
-import LineGraph from './LineGraph'
+} from "@material-ui/core";
+import InfoBox from "./InfoBox";
+import LineGraph from "./LineGraph";
+import Table from "./Table";
+import { sortData, prettyPrintStat } from "./util";
+import numeral from "numeral";
+import Map from "./Map";
+import "leaflet/dist/leaflet.css";
 
 function App() {
   const[countries,setCountries] = useState([]);
-  const[country,setCountry] = useState('worldwide');
+  const[country,setInputCountry] = useState('worldwide');
   const[countryInfo,setCountryInfo] = useState({});
   const [tableData, setTableData] = useState([]);
+  const [casesType, setCasesType] = useState("cases");
 
   useEffect(() => {
     fetch("https://disease.sh/v3/covid-19/all")
@@ -37,7 +40,7 @@ function App() {
             name:country.country,
             value: country.countryInfo.iso2
           }));
-          const sortedData = sortData(data);
+          let sortedData = sortData(data);
           setTableData(sortedData); 
           setCountries(countries);
         });
@@ -56,7 +59,7 @@ function App() {
     await fetch(url)
         .then((response) => response.json())
         .then((data) => {
-          setCountry(countryCode);
+          setInputCountry(countryCode);
           setCountryInfo(data);
     });
   };
